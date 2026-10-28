@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YUMATRIN MOBILE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ЭКРАН ЗАГРУЗКИ -->
+    <div id="preloader">
+        <div class="loader-box">
+            <div class="loader-ring"></div>
+            <div class="loader-ring-inner"></div>
+        </div>
+        <div class="loader-text">СИСТЕМА ЗАГРУЖАЕТСЯ...</div>
+    </div>
+
+    <!-- ФОНОВЫЕ ЭФФЕКТЫ (Анимированные сферы и сетка) -->
+    <div class="bg-effects">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <!-- ШАПКА -->
+        <header>
+            <div class="header-container">
+                <!-- ПУСТОЙ ЛОГОТИП (Замени src="logo.png" на свою картинку) -->
+                <div class="logo" onclick="navigateTo('home')">
+                    <img src="logo.png" alt="YUMATRIN LOGO" class="site-logo" onerror="this.style.display='none'">
+                    <span class="logo-text"><span class="text-gold">YUMATRIN</span> <span class="text-orange">MOBILE</span></span>
+                </div>
+                
+                <nav class="desktop-nav">
+                    <a class="nav-link active" id="nav-home" onclick="navigateTo('home')">Главная</a>
+                    <a class="nav-link" id="nav-servers" onclick="navigateTo('servers')">Сервера</a>
+                    <a class="nav-link" id="nav-download" onclick="navigateTo('download')">Скачать</a>
+                    <a class="nav-link" id="nav-donate" onclick="navigateTo('donate')">Поддержка</a>
+                    <a class="nav-link" id="nav-register" onclick="navigateTo('register')">Регистрация</a>
+                    <a class="nav-link" id="nav-socials" onclick="navigateTo('socials')">Соцсети</a>
+                </nav>
+
+                <button class="burger-btn" id="burgerBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- МОБИЛЬНОЕ МЕНЮ -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <a onclick="navigateTo('home'); closeMobileMenu();">Главная</a>
+            <a onclick="navigateTo('servers'); closeMobileMenu();">Сервера</a>
+            <a onclick="navigateTo('download'); closeMobileMenu();">Скачать игру</a>
+            <a onclick="navigateTo('donate'); closeMobileMenu();">Поддержка проекта</a>
+            <a onclick="navigateTo('register'); closeMobileMenu();">Регистрация</a>
+            <a onclick="navigateTo('socials'); closeMobileMenu();">Соцсети</a>
+        </nav>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ -->
+        <main>
+            <!-- ГЛАВНАЯ -->
+            <section class="page-section active" id="page-home">
+                <div class="floating-icons">
+                    <span>🎮</span><span>💰</span><span>🚔</span><span>🚗</span>
+                </div>
+                <h1 class="hero-title">ТВОЯ ВТОРАЯ ЖИЗНЬ</h1>
+                <p class="hero-subtitle">Огромный мир, живая экономика, играй по своим правилам.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="navigateTo('download')">НАЧАТЬ ИГРАТЬ</button>
+                    <button class="btn-secondary" onclick="openModal('devModal')">УЗНАТЬ ОБ ИГРЕ</button>
+                </div>
+            </section>
+
+            <!-- СЕРВЕРА -->
+            <section class="page-section" id="page-servers">
+                <h2 class="section-title">НАШИ СЕРВЕРА</h2>
+                <p class="section-subtitle">Выбирай сервер, который лучше подходит тебе</p>
+                
+                <div class="server-card">
+                    <div class="server-header">
+                        <h3>01 СЕРВЕР</h3>
+                        <span class="badge pulse-badge">В РАЗРАБОТКЕ</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <div class="server-stats">
+                        <span>Статус: Ожидание</span>
+                        <span>Онлайн: 0 / 1000</span>
+                    </div>
+                    <p class="server-note">Сервер появится в ближайшее время. Успей зарегистрироваться!</p>
+                    <button class="btn-register-server" onclick="openModal('regModal')">РЕГИСТРАЦИЯ</button>
+                </div>
+            </section>
+
+            <!-- СКАЧАТЬ -->
+            <section class="page-section" id="page-download">
+                <h2 class="section-title">СКАЧАТЬ ИГРУ</h2>
+                <p class="section-subtitle">Выберите вашу платформу для установки</p>
+                
+                <div class="os-selector">
+                    <button class="os-tab active" onclick="switchOS('pc', this)">ПК</button>
+                    <button class="os-tab" onclick="switchOS('mobile', this)">Мобильные</button>
+                </div>
+
+                <div class="platform-grid" id="os-pc">
+                    <div class="platform-card" onclick="openModal('dlModal')">
+                        <div class="platform-icon-wrap"><svg viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0V3.449zM10.95 1.933L24 0v11.551H10.95V1.933zM0 12.447h9.75v9.45L0 20.548v-8.101zM10.95 12.447H24V24l-13.05-1.933v-9.62z"/></svg></div>
+                        <div class="platform-name">Windows</div>
+                        <div class="platform-desc">Скачать лаунчер</div>
+                    </div>
+                    <div class="platform-card" onclick="openModal('dlModal')">
+                        <div class="platform-icon-wrap"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.4 12.36,4.16 13,3.5Z"/></svg></div>
+                        <div class="platform-name">macOS</div>
+                        <div class="platform-desc">Скачать лаунчер</div>
+                    </div>
+                </div>
+
+                <div class="platform-grid" id="os-mobile" style="display: none;">
+                    <div class="platform-card" onclick="openModal('dlModal')">
+                        <div class="platform-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-1.0003 0-.5517.4482-1.0003.9993-1.0003.5511 0 .9993.4486.9993 1.0003 0 .5517-.4482 1.0003-.9993 1.0003zm-11.046 0c-.5511 0-.9993-.4486-.9993-1.0003 0-.5517.4482-1.0003.9993-1.0003.5511 0 .9993.4486.9993 1.0003 0 .5517-.4482 1.0003-.9993 1.0003zM6.477 8.205H17.523v6.832c0 .5252-.4242.95-.9488.95h-1.4123v2.1679c0 .5517-.4482 1.0003-.9993 1.0003-.5511 0-.9993-.4486-.9993-1.0003v-2.1679h-2.3372v2.1679c0 .5517-.4482 1.0003-.9993 1.0003-.5511 0-.9993-.4486-.9993-1.0003v-2.1679H7.4258c-.5246 0-.9488-.4248-.9488-.95V8.205zM12 2.25c-2.2513 0-4.3083 1.1654-5.5239 2.9804l-.2448.3744h11.5374l-.2448-.3744C16.3083 3.4154 14.2513 2.25 12 2.25z"/></svg></div>
+                        <div class="platform-name">Android</div>
+                        <div class="platform-desc">Google Play / RuStore</div>
+                    </div>
+                    <div class="platform-card" onclick="openModal('dlModal')">
+                        <div class="platform-icon-wrap"><svg viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.4 12.36,4.16 13,3.5Z"/></svg></div>
+                        <div class="platform-name">iOS</div>
+                        <div class="platform-desc">App Store</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ДОНАТ -->
+            <section class="page-section" id="page-donate">
+                <h2 class="section-title">ПОДДЕРЖКА ПРОЕКТА</h2>
+                <p class="section-subtitle">Выбери набор и поддержи разработку</p>
+                
+                <div class="donate-grid">
+                    <div class="donate-card" onclick="openModal('donateModal')">
+                        <div class="badge-x2">x2 ДОНАТ</div>
+                        <div class="donate-icon">🪙</div>
+                        <div class="donate-amount">1000 YM</div>
+                        <div class="donate-price">300 ₽</div>
+                    </div>
+                    <div class="donate-card" onclick="openModal('donateModal')">
+                        <div class="badge-x2">x2 ДОНАТ</div>
+                        <div class="donate-icon">💰</div>
+                        <div class="donate-amount">2500 YM</div>
+                        <div class="donate-price">700 ₽</div>
+                    </div>
+                    <div class="donate-card" onclick="openModal('donateModal')">
+                        <div class="badge-x2">x2 ДОНАТ</div>
+                        <div class="donate-icon">💎</div>
+                        <div class="donate-amount">5000 YM</div>
+                        <div class="donate-price">1200 ₽</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- РЕГИСТРАЦИЯ -->
+            <section class="page-section" id="page-register">
+                <h2 class="section-title">РЕГИСТРАЦИЯ</h2>
+                <p class="section-subtitle">Создай аккаунт для игры</p>
+                
+                <div class="server-card" style="max-width: 450px; text-align: center;">
+                    <p class="server-note" style="border: none; padding-top: 0;">Регистрация временно недоступна. Сервера находятся в разработке.</p>
+                    <button class="btn-register-server" onclick="openModal('regModal')">СОЗДАТЬ АККАУНТ</button>
+                </div>
+            </section>
+
+            <!-- СОЦСЕТИ -->
+            <section class="page-section" id="page-socials">
+                <h2 class="section-title">МЫ В СОЦСЕТЯХ</h2>
+                <p class="section-subtitle">Подписывайся на новости</p>
+                
+                <div class="social-grid">
+                    <a href="https://t.me/yumatrin" target="_blank" class="social-card">
+                        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        Telegram
+                    </a>
+                    <a href="https://vk.ru/yumatrin" target="_blank" class="social-card">
+                        <svg viewBox="0 0 24 24"><path d="M13.162 18.994c.609 0 .858-.406.851-1.068-.025-1.198.129-1.689.744-1.785.452-.069 1.258.502 2.386 1.894.558.708 1.003.997 1.686.997h2.278c.624 0 .928-.335.799-.982-.163-.853-1.291-2.55-2.85-4.166-1.472-1.518-1.472-1.518-.198-3.206 1.809-2.37 2.408-3.81 2.408-4.242 0-.436-.247-.614-.751-.614h-2.172c-.567 0-.832.245-1.011.704 0 0-1.01 2.505-2.432 4.112-.55.632-.861.836-1.151.836-.203 0-.341-.152-.341-.773V6.617c0-.601-.134-.878-.641-.878H9.93c-.383 0-.614.209-.614.482 0 .515.76.63.838 2.108v3.068c0 .743-.132.884-.448.884-.444 0-1.688-1.858-2.459-3.993-.259-.726-.514-.998-1.08-.998H3.917c-.568 0-.698.245-.698.704 0 .573 1.315 3.653 3.458 6.94 1.834 2.748 4.076 4.242 6.485 4.242z"/></svg>
+                        ВКонтакте
+                    </a>
+                    <a href="https://discord.gg/jCbyPWFbF" target="_blank" class="social-card">
+                        <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+                        Discord
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- ПОДВАЛ -->
+        <footer>
+            &copy; 2026 YUMATRIN MOBILE. Все права защищены.
+        </footer>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <div class="modal-overlay" id="devModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('devModal')">&times;</span>
+            <h3>Игра в разработке</h3>
+            <p>Проект находится на стадии активной разработки. Скоро здесь появится полноценная энциклопедия мира YUMATRIN MOBILE. Следите за новостями!</p>
+            <button class="btn-primary" onclick="closeModal('devModal')">ОК</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="dlModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('dlModal')">&times;</span>
+            <h3>Скачивание недоступно</h3>
+            <p>Файлы игры появятся здесь сразу после завершения тестирования и открытия первого сервера. Ожидайте!</p>
+            <button class="btn-primary" onclick="closeModal('dlModal')">ОК</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="donateModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('donateModal')">&times;</span>
+            <h3>Платежи отключены</h3>
+            <p>На данный момент функция доната находится в разработке. Мы подключим платежные системы ближе к релизу.</p>
+            <button class="btn-primary" onclick="closeModal('donateModal')">ОК</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="regModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('regModal')">&times;</span>
+            <h3>Регистрация закрыта</h3>
+            <p>Сервера еще не запущены. Следите за новостями в наших социальных сетях, чтобы не пропустить старт!</p>
+            <button class="btn-primary" onclick="closeModal('regModal')">ОК</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
